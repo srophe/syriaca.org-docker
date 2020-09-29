@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+    srophe:
+        #build: .    
+        image: srophe/syriaca.org:3.22
+        ports:
+            - 8080:8080
+        links:
+            - fuseki:fuseki
+        volumes: 
+            - srophe-data:/exist/data
+            - srophe-conf:/exist/etc                         
+                    
+    fuseki:
+        image: stain/jena-fuseki
+        # networks:
+        #  - sropheNet 
+        volumes:
+            - fuseki:/fuseki          
+
+# networks:
+#    sropheNet:           
+    
+volumes:
+    srophe-data: 
+    srophe-conf:
+    fuseki:    
